@@ -1,0 +1,154 @@
+/* General Body */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    padding: 20px;
+    background: #2c3e50;
+    color: white;
+    margin: 0;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+/* Bin Section */
+.bins {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Bin Cards */
+.bin-card {
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    width: 170px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+.bin-card:hover {
+    transform: scale(1.05);
+}
+
+/* Text Styling */
+.bin-card h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.bin-card p {
+    margin: 5px 0;
+}
+
+/* Status Colors */
+.low {
+    color: green;
+    font-weight: bold;
+}
+
+.medium {
+    color: orange;
+    font-weight: bold;
+}
+
+.full {
+    color: red;
+    font-weight: bold;
+}
+
+/* Chart Section */
+.chart {
+    width: 30%;
+    background: white;
+    padding: 20px;
+    margin-left: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Chart Title */
+.chart h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Responsive (Mobile Friendly) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .bins, .chart {
+        width: 100%;
+    }
+}
+
+/* ROUTE PAGE STYLING */
+
+.map-container {
+    width: 80%;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.route-info {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.route-info h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.route-info p {
+    text-align: center;
+    margin: 5px;
+}
+
+.route-btn {
+    text-decoration: none;
+    background: #27ae60;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.route-btn:hover {
+    background: #219150;
+}
+
+.back-btn {
+    text-decoration: none;
+    background: #2c3e50;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #34495e;
+}

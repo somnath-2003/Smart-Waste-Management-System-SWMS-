@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Route Optimization</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>Route Optimization Map</h1>
+
+<div class="map-container">
+    <canvas id="mapChart"></canvas>
+</div>
+
+<div class="route-info">
+    <h2>Optimized Route Order</h2>
+    <p>Start →</p>
+
+    {% for bin in route %}
+        <p>{{ bin.location }} ({{ bin.x }}, {{ bin.y }}) →</p>
+    {% endfor %}
+
+    <p>Dump Station</p>
+</div>
+
+<script>
+const data = {
+    datasets: [
+
+        //  ALL BINS
+        {
+            label: 'Bins',
+            data: [
+                {% for bin in bins %}
+                {x: {{ bin.x }}, y: {{ bin.y }}},
+                {% endfor %}
+            ],
+            backgroundColor: 'blue',
+            pointRadius: 6
+        },
+
+        //  START
+        {
+            label: 'Start',
+            data: [{x: {{ start_x }}, y: {{ start_y }} }],
+            backgroundColor: 'green',
+            pointRadius: 8
+        },
+
+        //  END
+        {
+            label: 'Dump Station',
+            data: [{x: {{ end_x }}, y: {{ end_y }} }],
+            backgroundColor: 'black',
+            pointRadius: 8
+        },
+
+        //  ROUTE LINE
+        {
+            label: 'Route',
+            data: [
+                {x: {{ start_x }}, y: {{ start_y }} },
+
+                {% for bin in route %}
+                {x: {{ bin.x }}, y: {{ bin.y }} },
+                {% endfor %}
+
+                {x: {{ end_x }}, y: {{ end_y }} }
+            ],
+            type: 'line',
+            borderColor: 'red',
+            borderWidth: 2,
+            fill: false,
+            tension: 0
+        }
+    ]
+};
+
+const config = {
+    type: 'scatter',
+    data: data,
+    options: {
+        plugins: {
+            legend: { display: true }
+        },
+        scales: {
+            x: { title: { display: true, text: 'X Axis' } },
+            y: { title: { display: true, text: 'Y Axis' } }
+        }
+    }
+};
+
+new Chart(
+    document.getElementById('mapChart'),
+    config
+);
+
+</script>
+<div style="text-align:center; margin:20px;">
+    <a href="/" class="back-btn">⬅ Back to Dashboard</a>
+</div>
+
+</body>
+</html>

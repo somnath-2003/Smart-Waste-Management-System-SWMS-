@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SWMS Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>Smart Waste Management System</h1>
+
+<div class="container">
+
+    <!-- LEFT SIDE: BIN CARDS -->
+    <div class="bins">
+        {% for bin in bins %}
+            <div class="bin-card">
+                <h3>{{ bin.location }}</h3>
+                <p>Level: {{ bin.fill_level }}%</p>
+
+                <p class="{{ bin.status|lower }}">
+                    Status: {{ bin.status }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- RIGHT SIDE: CHART -->
+    <div class="chart">
+        <h2>Bin Status Overview</h2>
+        <canvas id="myChart"></canvas>
+    </div>
+
+</div>
+
+<!-- Chart Script -->
+<script>
+    const data = {
+        labels: ['Low', 'Medium', 'Full'],
+        datasets: [{
+            label: 'Bin Status',
+            data: [{{ low }}, {{ medium }}, {{ full }}],
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+    };
+
+    new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+
+<div style="text-align:center; margin:20px;">
+    <a href="/route/" class="route-btn">View Optimized Route</a>
+</div>
+
+</body>
+</html>
